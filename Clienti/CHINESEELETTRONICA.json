@@ -3,39 +3,47 @@
   "riferimento": "Sig. Chinese",
   "macchina": "SEHO8140",
   "lega": "SN100CS",
-
   "note_correttive": {
     "Nichel": {
-      "high":     "⚠️ Ni elevato: [inserire azione correttiva specifica]",
-      "low":      "📉 Ni in calo: [inserire azione correttiva specifica]",
+      "high": "⚠️ Ni elevato: [inserire azione correttiva specifica]",
+      "low": "📉 Ni in calo: [inserire azione correttiva specifica]",
       "unstable": "⚡ Ni instabile: [inserire azione correttiva specifica]",
-      "ok":       "✅ Nichel nella norma. [inserire nota di monitoraggio]"
+      "ok": "✅ Nichel nella norma. [inserire nota di monitoraggio]"
     },
     "Rame": {
-      "high":     "🔴 Cu elevato: [inserire azione correttiva specifica]",
-      "low":      "📉 Cu basso: [inserire azione correttiva specifica]",
+      "high": "🔴 Cu elevato: [inserire azione correttiva specifica]",
+      "low": "📉 Cu basso: [inserire azione correttiva specifica]",
       "unstable": "⚡ Cu variabile: [inserire azione correttiva specifica]",
-      "ok":       "✅ Rame nella norma. [inserire nota di monitoraggio]"
+      "ok": "✅ Rame nella norma. [inserire nota di monitoraggio]"
     },
     "Piombo": {
-      "high":     "🚨 Pb oltre soglia: [inserire azione correttiva specifica]",
-      "low":      "✅ Piombo nella norma.",
+      "high": "🚨 Pb oltre soglia: [inserire azione correttiva specifica]",
+      "low": "✅ Piombo nella norma.",
       "unstable": "⚡ Pb oscillante: [inserire azione correttiva specifica]",
-      "ok":       "✅ Piombo nella norma. [inserire nota di monitoraggio]"
+      "ok": "✅ Piombo nella norma. [inserire nota di monitoraggio]"
     }
   },
-
   "prossima_analisi": {
     "frequenza_mesi": 3,
     "nota_promemoria": ""
   },
-
   "pozzetti": [
     {
       "id": "P1",
       "label": "Pozzetto 1",
       "analisi": [
-        { "data": "GG/MM/AA", "Nichel": 0.0000, "Rame": 0.0000, "Piombo": 0.0000 }
+        {
+          "data": "GG/MM/AA",
+          "Nichel": 0,
+          "Rame": 0,
+          "Piombo": 0
+        },
+        {
+          "data": "05/02/26",
+          "Nichel": 0.05,
+          "Rame": 0.7,
+          "Piombo": 0.01
+        }
       ]
     }
   ]
