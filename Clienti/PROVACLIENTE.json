@@ -50,15 +50,5 @@
         { "data": "25/07/24", "Nichel": 0.0389, "Rame": 0.0276, "Piombo": 0.0007 }
       ]
     },
-    {
-      "id": "P3",
-      "label": "Pozzetto 3 – Linea C",
-      "analisi": [
-        { "data": "14/01/24", "Nichel": 0.1023, "Rame": 0.0452, "Piombo": 0.0033 },
-        { "data": "20/04/24", "Nichel": 0.0978, "Rame": 0.0388, "Piombo": 0.0028 },
-        { "data": "30/07/24", "Nichel": 0.0867, "Rame": 0.0411, "Piombo": 0.0019 },
-        { "data": "15/10/24", "Nichel": 0.0934, "Rame": 0.0399, "Piombo": 0.0024 }
-      ]
-    }
   ]
 }
