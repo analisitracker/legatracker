@@ -3,64 +3,161 @@
   "riferimento": "Sig. BIASSONI",
   "macchina": "SELETTIVA",
   "lega": "SN100CS",
-
   "note_correttive": {
     "Nichel": {
-      "high":     "⚠️ Ni elevato: verificare apporto da componenti o contaminazione vasca. Considerare diluizione con lega fresca.",
-      "low":      "📉 Ni in calo: monitorare consumo. Aggiunta lega madre Ni-Sn se valore scende sotto 0,020%.",
+      "high": "⚠️ Ni elevato: verificare apporto da componenti o contaminazione vasca. Considerare diluizione con lega fresca.",
+      "low": "📉 Ni in calo: monitorare consumo. Aggiunta lega madre Ni-Sn se valore scende sotto 0,020%.",
       "unstable": "⚡ Ni instabile (CV>10%): controllare dissoluzione irregolare componenti o stratificazione vasca.",
-      "ok":       "✅ Nichel nella norma. Continuare monitoraggio periodico."
+      "ok": "✅ Nichel nella norma. Continuare monitoraggio periodico."
     },
     "Rame": {
-      "high":     "🔴 Cu elevato: forte dissoluzione PCB. Ridurre tempi di contatto o rabboccare con lega vergine SN100CS.",
-      "low":      "📉 Cu basso: rabbocco standard con SN100CS. Verificare consumo.",
+      "high": "🔴 Cu elevato: forte dissoluzione PCB. Ridurre tempi di contatto o rabboccare con lega vergine SN100CS.",
+      "low": "📉 Cu basso: rabbocco standard con SN100CS. Verificare consumo.",
       "unstable": "⚡ Cu variabile (CV>10%): verificare temperatura vasca, pulizia ugelli e continuità processo.",
-      "ok":       "✅ Rame nella norma. Continuare monitoraggio periodico."
+      "ok": "✅ Rame nella norma. Continuare monitoraggio periodico."
     },
     "Piombo": {
-      "high":     "🚨 Pb oltre soglia! Identificare fonte contaminazione (componenti, frame, fixtures). Azione correttiva urgente!",
-      "low":      "✅ Piombo nella norma.",
+      "high": "🚨 Pb oltre soglia! Identificare fonte contaminazione (componenti, frame, fixtures). Azione correttiva urgente!",
+      "low": "✅ Piombo nella norma.",
       "unstable": "⚡ Pb oscillante: possibile contaminazione episodica. Tracciare lotti componenti sospetti.",
-      "ok":       "✅ Piombo nella norma. Continuare monitoraggio periodico."
+      "ok": "✅ Piombo nella norma. Continuare monitoraggio periodico."
     }
   },
-
   "prossima_analisi": {
     "frequenza_mesi": 3,
     "nota_promemoria": ""
   },
-
   "pozzetti": [
     {
       "id": "P1",
       "label": "Pozzetto 1",
       "analisi": [
-        { "data": "04/10/24", "Nichel": 0.0823, "Rame": 0.7430, "Piombo": 0.0115 },
-        { "data": "06/12/24", "Nichel": 0.0751, "Rame": 0.7380, "Piombo": 0.0146 },
-        { "data": "13/02/25", "Nichel": 0.0598, "Rame": 0.7060, "Piombo": 0.0139 },
-        { "data": "10/03/25", "Nichel": 0.0570, "Rame": 0.7250, "Piombo": 0.0134 },
-        { "data": "07/04/25", "Nichel": 0.0578, "Rame": 0.7310, "Piombo": 0.0135 },
-        { "data": "09/05/25", "Nichel": 0.0539, "Rame": 0.7430, "Piombo": 0.0130 },
-        { "data": "20/06/25", "Nichel": 0.0531, "Rame": 0.6930, "Piombo": 0.0119 },
-        { "data": "12/09/25", "Nichel": 0.0541, "Rame": 0.7700, "Piombo": 0.0127 },
-        { "data": "21/10/25", "Nichel": 0.0554, "Rame": 0.7910, "Piombo": 0.0150 },
-        { "data": "12/02/26", "Nichel": 0.0572, "Rame": 0.7520, "Piombo": 0.0149 }
+        {
+          "data": "04/10/24",
+          "Nichel": 0.0823,
+          "Rame": 0.743,
+          "Piombo": 0.0115
+        },
+        {
+          "data": "06/12/24",
+          "Nichel": 0.0751,
+          "Rame": 0.738,
+          "Piombo": 0.0146
+        },
+        {
+          "data": "13/02/25",
+          "Nichel": 0.0598,
+          "Rame": 0.706,
+          "Piombo": 0.0139
+        },
+        {
+          "data": "10/03/25",
+          "Nichel": 0.057,
+          "Rame": 0.725,
+          "Piombo": 0.0134
+        },
+        {
+          "data": "07/04/25",
+          "Nichel": 0.0578,
+          "Rame": 0.731,
+          "Piombo": 0.0135
+        },
+        {
+          "data": "09/05/25",
+          "Nichel": 0.0539,
+          "Rame": 0.743,
+          "Piombo": 0.013
+        },
+        {
+          "data": "20/06/25",
+          "Nichel": 0.0531,
+          "Rame": 0.693,
+          "Piombo": 0.0119
+        },
+        {
+          "data": "12/09/25",
+          "Nichel": 0.0541,
+          "Rame": 0.77,
+          "Piombo": 0.0127
+        },
+        {
+          "data": "21/10/25",
+          "Nichel": 0.0554,
+          "Rame": 0.791,
+          "Piombo": 0.015
+        },
+        {
+          "data": "12/02/26",
+          "Nichel": 0.0572,
+          "Rame": 0.752,
+          "Piombo": 0.0149
+        }
       ]
     },
     {
       "id": "P2",
       "label": "Pozzetto 2",
       "analisi": [
-        { "data": "04/10/24", "Nichel": 0.1140, "Rame": 1.0800, "Piombo": 0.0120 },
-        { "data": "06/12/24", "Nichel": 0.0424, "Rame": 0.7160, "Piombo": 0.0124 },
-        { "data": "13/02/25", "Nichel": 0.0576, "Rame": 0.8110, "Piombo": 0.0126 },
-        { "data": "10/03/25", "Nichel": 0.0529, "Rame": 0.8070, "Piombo": 0.0125 },
-        { "data": "07/04/25", "Nichel": 0.0562, "Rame": 0.8350, "Piombo": 0.0127 },
-        { "data": "09/05/25", "Nichel": 0.0552, "Rame": 0.8260, "Piombo": 0.0112 },
-        { "data": "20/06/25", "Nichel": 0.0516, "Rame": 0.7920, "Piombo": 0.0114 },
-        { "data": "12/09/25", "Nichel": 0.0559, "Rame": 0.8750, "Piombo": 0.0122 },
-        { "data": "21/10/25", "Nichel": 0.0558, "Rame": 0.8550, "Piombo": 0.0162 },
-        { "data": "12/02/26", "Nichel": 0.0605, "Rame": 0.8490, "Piombo": 0.0146 }
+        {
+          "data": "04/10/24",
+          "Nichel": 0.114,
+          "Rame": 1.08,
+          "Piombo": 0.012
+        },
+        {
+          "data": "06/12/24",
+          "Nichel": 0.0424,
+          "Rame": 0.716,
+          "Piombo": 0.0124
+        },
+        {
+          "data": "13/02/25",
+          "Nichel": 0.0576,
+          "Rame": 0.811,
+          "Piombo": 0.0126
+        },
+        {
+          "data": "10/03/25",
+          "Nichel": 0.0529,
+          "Rame": 0.807,
+          "Piombo": 0.0125
+        },
+        {
+          "data": "07/04/25",
+          "Nichel": 0.0562,
+          "Rame": 0.835,
+          "Piombo": 0.0127
+        },
+        {
+          "data": "09/05/25",
+          "Nichel": 0.0552,
+          "Rame": 0.826,
+          "Piombo": 0.0112
+        },
+        {
+          "data": "20/06/25",
+          "Nichel": 0.0516,
+          "Rame": 0.792,
+          "Piombo": 0.0114
+        },
+        {
+          "data": "12/09/25",
+          "Nichel": 0.0559,
+          "Rame": 0.875,
+          "Piombo": 0.0122
+        },
+        {
+          "data": "21/10/25",
+          "Nichel": 0.0558,
+          "Rame": 0.855,
+          "Piombo": 0.0162
+        },
+        {
+          "data": "12/02/26",
+          "Nichel": 0.0605,
+          "Rame": 0.849,
+          "Piombo": 0.0146
+        }
       ]
     }
   ]
