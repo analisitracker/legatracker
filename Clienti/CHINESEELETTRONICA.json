@@ -1,8 +1,8 @@
 {
-  "cliente": "[NOME CLIENTE]",
-  "riferimento": "[NOME REFERENTE]",
-  "macchina": "[TIPO MACCHINA]",
-  "lega": "[TIPO LEGA]",
+  "cliente": "CHINESE ELETTRONICA",
+  "riferimento": "Sig. Chinese",
+  "macchina": "SEHO8140",
+  "lega": "SN100CS",
 
   "note_correttive": {
     "Nichel": {
