@@ -1,8 +1,8 @@
 {
-  "cliente": "CLIENTE",
-  "riferimento": "Sig. ",
-  "macchina": "SALTATRICE",
-  "lega": "STAGNO",
+  "cliente": "[NOME CLIENTE]",
+  "riferimento": "[NOME REFERENTE]",
+  "macchina": "[TIPO MACCHINA]",
+  "lega": "[TIPO LEGA]",
 
   "note_correttive": {
     "Nichel": {
@@ -22,6 +22,12 @@
       "low":      "✅ Piombo nella norma.",
       "unstable": "⚡ Pb oscillante: [inserire azione correttiva specifica]",
       "ok":       "✅ Piombo nella norma. [inserire nota di monitoraggio]"
+    },
+    "Germanio": {
+      "high":     "🔴 Ge elevato (>0,010%): [inserire azione correttiva specifica]",
+      "low":      "📉 Ge basso (<0,007%): [inserire azione correttiva specifica]",
+      "unstable": "⚡ Ge instabile: [inserire azione correttiva specifica]",
+      "ok":       "✅ Germanio nella norma (0,007–0,010%). [inserire nota di monitoraggio]"
     }
   },
 
@@ -35,7 +41,7 @@
       "id": "P1",
       "label": "Pozzetto 1",
       "analisi": [
-        { "data": "GG/MM/AA", "Nichel": 0.0000, "Rame": 0.0000, "Piombo": 0.0000 }
+        { "data": "GG/MM/AA", "Nichel": 0.0000, "Rame": 0.0000, "Piombo": 0.0000, "Germanio": 0.0000 }
       ]
     }
   ]
