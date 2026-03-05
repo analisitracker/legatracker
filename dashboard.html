@@ -57,10 +57,10 @@ nav { background: #111827; border-bottom: 2px solid #1d4ed8; padding: 0 24px; di
 .poz-tab.active { background: #1d4ed8; border-color: #3b82f6; color: #fff; }
 
 /* KPI ROW */
-.kpi-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 18px; }
+.kpi-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 18px; }
 .kpi { background: #111827; border: 1px solid #1e3a5a; border-radius: 10px; padding: 15px; position: relative; overflow: hidden; }
 .kpi::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; }
-.kpi.ni::before { background:#4da6ff; } .kpi.cu::before { background:#f97316; } .kpi.pb::before { background:#4ade80; }
+.kpi.ni::before { background:#4da6ff; } .kpi.cu::before { background:#f97316; } .kpi.pb::before { background:#4ade80; } .kpi.ge::before { background:#c084fc; }
 .kpi-lbl { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #4a6080; margin-bottom: 7px; }
 .kpi-val { font-size: 26px; font-weight: 700; margin-bottom: 3px; }
 .kpi-val small { font-size: 13px; color: #4a6080; }
@@ -200,6 +200,10 @@ td.out { color:#f87171!important; font-weight:700; }
           <div class="fg"><label>Rame (%)</label><input type="number" id="f-cu" step="0.0001" placeholder="es. 0.7520"></div>
           <div class="fg"><label>Piombo (%)</label><input type="number" id="f-pb" step="0.0001" placeholder="es. 0.0149"></div>
         </div>
+        <div class="form-row">
+          <div class="fg"><label>Germanio (%)</label><input type="number" id="f-ge" step="0.0001" placeholder="es. 0.0085"></div>
+          <div class="fg"></div>
+        </div>
         <div style="display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;">
           <button class="btn" onclick="addAnalysis()">✅ Aggiungi analisi</button>
           <button class="btn btn-save" onclick="exportJSON()">💾 Salva JSON aggiornato</button>
@@ -276,11 +280,12 @@ td.out { color:#f87171!important; font-weight:700; }
 // COSTANTI
 // ═══════════════════════════════════════════════════════════════
 const SPECS = {
-  Nichel: { min:0.010, max:0.100, color:'#4da6ff', cls:'ni' },
-  Rame:   { min:0.400, max:0.850, color:'#f97316', cls:'cu' },
-  Piombo: { min:null,  max:0.100, color:'#4ade80', cls:'pb' },
+  Nichel:   { min:0.010, max:0.100, color:'#4da6ff', cls:'ni' },
+  Rame:     { min:0.400, max:0.850, color:'#f97316', cls:'cu' },
+  Piombo:   { min:null,  max:0.100, color:'#4ade80', cls:'pb' },
+  Germanio: { min:0.007, max:0.010, color:'#c084fc', cls:'ge' },
 };
-const COMPS = ['Nichel','Rame','Piombo'];
+const COMPS = ['Nichel','Rame','Piombo','Germanio'];
 
 const DEFAULT_NOTES = {
   Nichel: {
@@ -300,6 +305,12 @@ const DEFAULT_NOTES = {
     low:'✅ Piombo nella norma.',
     unstable:'⚡ Pb oscillante: possibile contaminazione episodica. Tracciare lotti.',
     ok:'✅ Piombo nella norma. Continuare monitoraggio periodico.'
+  },
+  Germanio: {
+    high:'🔴 Ge elevato (>0,010%): consumo eccessivo additivo. Verificare aggiunte recenti e bilanciare il dosaggio.',
+    low:'📉 Ge basso (<0,007%): livello insufficiente. Integrare Germanio per mantenere proprietà anti-ossidazione.',
+    unstable:'⚡ Ge instabile (CV>10%): dosaggio irregolare o agitazione insufficiente. Verificare distribuzione in vasca.',
+    ok:'✅ Germanio nella norma (0,007–0,010%). Continuare monitoraggio periodico.'
   }
 };
 
@@ -577,10 +588,11 @@ function addAnalysis(){
   const ni=parseFloat(document.getElementById('f-ni').value);
   const cu=parseFloat(document.getElementById('f-cu').value);
   const pb=parseFloat(document.getElementById('f-pb').value);
-  if(!dateRaw||isNaN(ni)||isNaN(cu)||isNaN(pb)){ alert('Compila tutti i campi numerici e la data.'); return; }
+  const ge=parseFloat(document.getElementById('f-ge').value);
+  if(!dateRaw||isNaN(ni)||isNaN(cu)||isNaN(pb)||isNaN(ge)){ alert('Compila tutti i campi numerici e la data.'); return; }
   const d=new Date(dateRaw);
   const label=`${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getFullYear()).slice(2)}`;
-  DB.pozzetti[pi].analisi.push({data:label,Nichel:ni,Rame:cu,Piombo:pb});
+  DB.pozzetti[pi].analisi.push({data:label,Nichel:ni,Rame:cu,Piombo:pb,Germanio:ge});
 
   const notes=getNotes();
   let html=`<div style="color:#4ade80;font-weight:700;margin-bottom:12px;">✅ Analisi del ${label} registrata! Ricorda di salvare il JSON.</div>`;
