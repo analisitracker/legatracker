@@ -103,28 +103,28 @@ const COMPS = ['Nichel', 'Rame', 'Piombo', 'Germanio'];
 
 const DEFAULT_NOTES = {
   Nichel: {
-    high:     '⚠️ Ni elevato: verificare apporto da componenti o contaminazione vasca. Considerare diluizione con lega fresca.',
-    low:      '📉 Ni in calo: monitorare consumo. Aggiunta lega madre Ni-Sn se <0,020%.',
-    unstable: '⚡ Ni instabile (CV>10%): controllare dissoluzione irregolare o stratificazione vasca.',
-    ok:       '✅ Nichel nella norma. Continuare monitoraggio periodico.'
+    high:     '⚠️ Ni elevato: probabile dissoluzione da componenti nichelati e/o PCB con finitura ENIG. Si consiglia di utilizzare una lega con minor contenuto di Nichel. Contattare il nostro supporto tecnico per consulenza.',
+    low:      '📉 Ni in calo: il basso contenuto di Nichel potrebbe ridurre la fluidità della lega. Si consiglia di utilizzare una lega di ripristino con maggior contenuto di Nichel. Contattare il nostro supporto tecnico per consulenza.',
+    unstable: '⚡ Ni instabile: i valori oscillano in modo irregolare nel tempo (CV% > 10%). Il processo non è stabile. Verificare la presenza discontinua di componenti nichelati o PCB con finitura ENIG. Contattare il nostro supporto tecnico per consulenza.',
+    ok:       '✅ Nichel nella norma. Il valore è stabile. Continuare il monitoraggio periodico.'
   },
   Rame: {
-    high:     '🔴 Cu elevato: forte dissoluzione PCB. Ridurre tempi di contatto o rabboccare con lega vergine SN100CS.',
-    low:      '📉 Cu basso: rabbocco standard con SN100CS.',
-    unstable: '⚡ Cu variabile (CV>10%): verificare temperatura vasca e pulizia ugelli selettiva.',
-    ok:       '✅ Rame nella norma. Continuare monitoraggio periodico.'
+    high:     '🔴 Cu elevato: possibile forte dissoluzione da PCB. Si consiglia l\'impiego di una lega con minor contenuto di rame. Contattare il nostro supporto tecnico per consulenza.',
+    low:      '📉 Cu in calo: si consiglia l\'impiego di una lega con maggiore contenuto di rame. Contattare il nostro supporto tecnico per consulenza.',
+    unstable: '⚡ Cu instabile: i valori oscillano in modo irregolare nel tempo (CV% > 10%). Contattare il nostro supporto tecnico per consulenza.',
+    ok:       '✅ Rame nella norma. Il valore è stabile. Continuare il monitoraggio periodico.'
   },
   Piombo: {
-    high:     '🚨 Pb oltre soglia! Identificare fonte contaminazione (componenti, frame, fixtures). Azione urgente!',
-    low:      '✅ Piombo nella norma.',
-    unstable: '⚡ Pb oscillante: possibile contaminazione episodica. Tracciare lotti componenti.',
-    ok:       '✅ Piombo nella norma. Continuare monitoraggio periodico.'
+    high:     '🚨 Pb oltre soglia RoHS! La presenza di Piombo oltre il limite legale richiede un intervento immediato. Identificare la fonte di contaminazione tra componenti, frame o fixtures. Contattare immediatamente il nostro supporto tecnico.',
+    low:      '✅ Piombo nella norma. Il valore è al di sotto del limite RoHS. Nessun intervento necessario.',
+    unstable: '⚡ Pb instabile: i valori oscillano in modo irregolare nel tempo (CV% > 10%). Possibile contaminazione episodica. Tracciare i lotti dei componenti e contattare il nostro supporto tecnico per consulenza.',
+    ok:       '✅ Piombo nella norma. Il valore è stabile e al di sotto del limite RoHS. Continuare il monitoraggio periodico.'
   },
   Germanio: {
-    high:     '🔴 Ge elevato (>0,015%): consumo eccessivo additivo. Verificare aggiunte recenti e bilanciare il dosaggio.',
-    low:      '📉 Ge basso (<0,007%): livello insufficiente. Integrare Germanio per mantenere proprietà anti-ossidazione.',
-    unstable: '⚡ Ge instabile (CV>10%): dosaggio irregolare o agitazione insufficiente. Verificare distribuzione in vasca.',
-    ok:       '✅ Germanio nella norma (0,007–0,015%). Continuare monitoraggio periodico.'
+    high:     '🔴 Ge elevato: dosaggio eccessivo dell\'additivo. Verificare le aggiunte recenti e ridurre il dosaggio. Contattare il nostro supporto tecnico per consulenza.',
+    low:      '📉 Ge in calo: il livello insufficiente di Germanio potrebbe ridurre le proprietà anti-ossidazione della lega. Si consiglia un intervento con una lega di ripristino. Contattare il nostro supporto tecnico per consulenza.',
+    unstable: '⚡ Ge instabile: i valori oscillano in modo irregolare nel tempo (CV% > 10%). Si consiglia una fase di controllo per monitorare l\'andamento e definire un piano per il mantenimento nei valori ottimali. Contattare il nostro supporto tecnico per consulenza.',
+    ok:       '✅ Germanio nella norma. Il livello è stabile e garantisce le proprietà anti-ossidazione della lega. Continuare il monitoraggio periodico.'
   }
 };
 
