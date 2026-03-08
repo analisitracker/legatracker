@@ -36,6 +36,12 @@
     "nota_promemoria": "Tutti i valori sono nella norma. Nessun intervento necessario."
   },
 
+  "documenti": {
+    "rapporti": [
+      { "nome": "Rapporto Analisi – Novalgic Pozzetto", "data": "14/01/2026", "file": "2026-01-14_rapporto_novalgic_pozzetto.pdf" }
+    ]
+  },
+
   "pozzetti": [
     {
       "id": "P1",
