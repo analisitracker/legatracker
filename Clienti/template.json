@@ -36,6 +36,10 @@
     "nota_promemoria": ""
   },
 
+  "documenti": {
+    "rapporti": []
+  },
+
   "pozzetti": [
     {
       "id": "P1",
