@@ -377,7 +377,7 @@ function showTab(tab) {
 // ─── MERCATI ──────────────────────────────────────────────────────────────
 function renderMercati() {
   const el = document.getElementById('mkt-content');
-  if (el.dataset.loaded) return; // carica solo una volta
+  if (el.dataset.loaded) return;
   el.dataset.loaded = true;
 
   el.innerHTML = `
@@ -385,46 +385,15 @@ function renderMercati() {
     <div class="page-sub">Andamento del prezzo dello Stagno (Sn) sul London Metal Exchange · aggiornamento in tempo reale</div>
 
     <div class="panel" style="margin-bottom:20px">
-      <div class="panel-hdr"><span class="panel-title">💰 Prezzo attuale</span></div>
-      <div class="panel-body" style="padding:0">
-        <div class="tradingview-widget-container">
-          <div class="tradingview-widget-container__widget"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-          {
-            "symbol": "COMEX:SN1!",
-            "width": "100%",
-            "locale": "it",
-            "colorTheme": "dark",
-            "isTransparent": true
-          }
-          <\/script>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel" style="margin-bottom:20px">
-      <div class="panel-hdr"><span class="panel-title">📊 Grafico ultimi 3 mesi</span></div>
-      <div class="panel-body" style="padding:0;height:420px">
-        <div class="tradingview-widget-container" style="height:100%">
-          <div class="tradingview-widget-container__widget" style="height:100%"></div>
-          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
-          {
-            "symbol": "COMEX:SN1!",
-            "interval": "D",
-            "range": "3M",
-            "width": "100%",
-            "height": "400",
-            "locale": "it",
-            "colorTheme": "dark",
-            "isTransparent": true,
-            "hide_side_toolbar": true,
-            "allow_symbol_change": false,
-            "hide_top_toolbar": false,
-            "save_image": false,
-            "style": "2"
-          }
-          <\/script>
-        </div>
+      <div class="panel-hdr"><span class="panel-title">💰 Prezzo attuale + Grafico 3 mesi</span></div>
+      <div class="panel-body" style="padding:0;height:500px">
+        <iframe 
+          src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_sn&symbol=COMEX%3ASN1!&interval=D&range=3M&hidesidetoolbar=1&hidetoptoolbar=0&symboledit=0&saveimage=0&toolbarbg=1e2d45&studies=[]&theme=dark&style=2&timezone=Europe%2FRome&withdateranges=1&showpopupbutton=0&locale=it"
+          style="width:100%;height:500px;border:none;"
+          allowtransparency="true"
+          frameborder="0"
+          scrolling="no">
+        </iframe>
       </div>
     </div>
 
@@ -432,6 +401,7 @@ function renderMercati() {
       Dati forniti da <a href="https://www.tradingview.com" target="_blank" style="color:#3b82f6">TradingView</a> · 
       Il prezzo è espresso in USD/tonnellata · Solo a scopo informativo
     </div>`;
+}
 }
 
 // ─── ACQUISTI ─────────────────────────────────────────────────────────────
