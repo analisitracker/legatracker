@@ -109,6 +109,7 @@ td.out { color: #f87171 !important; font-weight: 700; }
   <div style="display:flex;gap:6px;margin-left:16px">
     <button class="main-tab active" id="tab-dashboard" onclick="showTab('dashboard')">📊 Dashboard</button>
     <button class="main-tab" id="tab-acquisti" onclick="showTab('acquisti')">📦 Acquisti</button>
+    <button class="main-tab" id="tab-mercati" onclick="showTab('mercati')">📈 Mercati</button>
     <button class="main-tab" id="tab-documenti" onclick="showTab('documenti')">📁 Documenti</button>
   </div>
   <div class="nav-right">
@@ -120,6 +121,7 @@ td.out { color: #f87171 !important; font-weight: 700; }
   <div style="text-align:center;padding:60px 20px;color:#4a6080;">⏳ Caricamento...</div>
 </div>
 <div class="wrap" id="acq-content" style="display:none"></div>
+<div class="wrap" id="mkt-content" style="display:none"></div>
 <div class="wrap" id="doc-content" style="display:none"></div>
 
 <script>
@@ -361,12 +363,75 @@ function showTab(tab) {
   activeTab = tab;
   document.getElementById('tab-dashboard').classList.toggle('active', tab==='dashboard');
   document.getElementById('tab-acquisti').classList.toggle('active', tab==='acquisti');
+  document.getElementById('tab-mercati').classList.toggle('active', tab==='mercati');
   document.getElementById('tab-documenti').classList.toggle('active', tab==='documenti');
   document.getElementById('main-content').style.display = tab==='dashboard' ? '' : 'none';
   document.getElementById('acq-content').style.display  = tab==='acquisti'  ? '' : 'none';
+  document.getElementById('mkt-content').style.display  = tab==='mercati'   ? '' : 'none';
   document.getElementById('doc-content').style.display  = tab==='documenti' ? '' : 'none';
   if (tab==='acquisti')  renderAcquisti();
+  if (tab==='mercati')   renderMercati();
   if (tab==='documenti') renderDocumenti();
+}
+
+// ─── MERCATI ──────────────────────────────────────────────────────────────
+function renderMercati() {
+  const el = document.getElementById('mkt-content');
+  if (el.dataset.loaded) return; // carica solo una volta
+  el.dataset.loaded = true;
+
+  el.innerHTML = `
+    <div class="page-title">📈 Mercati – Stagno LME</div>
+    <div class="page-sub">Andamento del prezzo dello Stagno (Sn) sul London Metal Exchange · aggiornamento in tempo reale</div>
+
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-hdr"><span class="panel-title">💰 Prezzo attuale</span></div>
+      <div class="panel-body" style="padding:0">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {
+            "symbol": "COMEX:SN1!",
+            "width": "100%",
+            "locale": "it",
+            "colorTheme": "dark",
+            "isTransparent": true
+          }
+          <\/script>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-hdr"><span class="panel-title">📊 Grafico ultimi 3 mesi</span></div>
+      <div class="panel-body" style="padding:0;height:420px">
+        <div class="tradingview-widget-container" style="height:100%">
+          <div class="tradingview-widget-container__widget" style="height:100%"></div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+          {
+            "symbol": "COMEX:SN1!",
+            "interval": "D",
+            "range": "3M",
+            "width": "100%",
+            "height": "400",
+            "locale": "it",
+            "colorTheme": "dark",
+            "isTransparent": true,
+            "hide_side_toolbar": true,
+            "allow_symbol_change": false,
+            "hide_top_toolbar": false,
+            "save_image": false,
+            "style": "2"
+          }
+          <\/script>
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:11px;color:#4a6080;text-align:center;padding-bottom:10px">
+      Dati forniti da <a href="https://www.tradingview.com" target="_blank" style="color:#3b82f6">TradingView</a> · 
+      Il prezzo è espresso in USD/tonnellata · Solo a scopo informativo
+    </div>`;
 }
 
 // ─── ACQUISTI ─────────────────────────────────────────────────────────────
