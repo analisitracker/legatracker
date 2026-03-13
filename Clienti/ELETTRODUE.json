@@ -42,6 +42,10 @@
     ]
   },
 
+  "acquisti": [
+    { "data": "26/02/2026", "prodotto": "SN100CS+", "quantita_kg": 50.75, "prezzo_kg": 45.42 }
+  ],
+
   "pozzetti": [
     {
       "id": "P1",
