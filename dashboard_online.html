@@ -252,7 +252,7 @@ function renderDashboard() {
     html += `<div class="kpi ${s.cls}">
       <div class="kpi-stato s-${st}">${statolabel(st)}</div>
       <div class="kpi-label">${comp} (max: ${s.max?s.max.toFixed(3):'—'})</div>
-      <div class="kpi-val" style="color:${st==='err'?'#f87171':st==='warn'?'#fbbf24':'#e2e8f0'}">${last.toFixed(4)}<small> %</small></div>
+      <div class="kpi-val" style="color:${st==='err'?'#c0392b':st==='warn'?'#d97706':'#1a1a2e'}">${last.toFixed(4)}<small> %</small></div>
       <div class="kpi-meta">Media: ${avg.toFixed(4)} | Δult.3: ${dl>=0?'+':''}${dl.toFixed(4)}</div>
       <div class="cv-bar"><div class="cv-fill" style="width:${cvPct}%;background:${cvColor(c)}"></div></div>
       <div style="font-size:10px;color:${cvColor(c)};margin-top:3px;">CV% ${c.toFixed(1)}%</div>
@@ -315,10 +315,10 @@ function renderDashboard() {
         <div style="margin-left:auto">${badgeHtml(st)}</div>
       </div>
       <div class="stats-row">
-        <div class="stat-box"><div class="stat-lbl">Ultimo valore</div><div class="stat-val" style="color:${st==='err'?'#f87171':st==='warn'?'#fbbf24':'#e2e8f0'}">${last.toFixed(4)}%</div></div>
+        <div class="stat-box"><div class="stat-lbl">Ultimo valore</div><div class="stat-val" style="color:${st==='err'?'#c0392b':st==='warn'?'#d97706':'#1a1a2e'}">${last.toFixed(4)}%</div></div>
         <div class="stat-box"><div class="stat-lbl">Media storica</div><div class="stat-val" style="color:#5a6070">${avg.toFixed(4)}%</div></div>
         <div class="stat-box"><div class="stat-lbl">CV% variabilità</div><div class="stat-val" style="color:${cvColor(c)}">${c.toFixed(1)}% ${c<=10?'🟢':c<=30?'🟡':'🔴'}</div></div>
-        <div class="stat-box"><div class="stat-lbl">Δ ultime 3</div><div class="stat-val" style="color:${Math.abs(dl)>avg*0.05?'#fbbf24':'#94a3b8'}">${dl>=0?'+':''}${dl.toFixed(4)}%</div></div>
+        <div class="stat-box"><div class="stat-lbl">Δ ultime 3</div><div class="stat-val" style="color:${Math.abs(dl)>avg*0.05?'#d97706':'#5a6070'}">${dl>=0?'+':''}${dl.toFixed(4)}%</div></div>
       </div>
       ${buildSVG(vals, dates, s.color, s.max, s.min, comp)}
       <div class="nota-box" style="border-color:${ns.border};background:${ns.bg};color:${ns.color}">${n.t}</div>
