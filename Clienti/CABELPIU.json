@@ -1,0 +1,137 @@
+{
+  "cliente": "CABEL+",
+  "riferimento": "Sig. Rettore",
+  "macchina": "LINEA ROHS 1 / LINEA JOT / LINEA BABY 2 / SELETTIVA",
+  "lega": "SN100CS+ / SN100CS",
+
+  "note_correttive": {
+    "Nichel": {
+      "high":     "⚠️ Ni elevato: probabile dissoluzione da componenti nichelati e/o PCB con finitura ENIG. Si consiglia di utilizzare una lega con minor contenuto di Nichel. Contattare il nostro supporto tecnico per consulenza.",
+      "low":      "📉 Ni in calo: il basso contenuto di Nichel potrebbe ridurre la fluidità della lega. Si consiglia di utilizzare una lega di ripristino con maggior contenuto di Nichel. Contattare il nostro supporto tecnico per consulenza.",
+      "unstable": "⚡ Ni instabile: i valori oscillano in modo irregolare nel tempo (CV% > 10%). Il processo non è stabile. Verificare la presenza discontinua di componenti nichelati o PCB con finitura ENIG. Contattare il nostro supporto tecnico per consulenza.",
+      "ok":       "✅ Nichel nella norma. Il valore è stabile. Continuare il monitoraggio periodico."
+    },
+    "Rame": {
+      "high":     "🔴 Cu elevato: possibile forte dissoluzione da PCB. Si consiglia l'impiego di una lega con minor contenuto di rame. Contattare il nostro supporto tecnico per consulenza.",
+      "low":      "📉 Cu in calo: si consiglia l'impiego di una lega con maggiore contenuto di rame. Contattare il nostro supporto tecnico per consulenza.",
+      "unstable": "⚡ Cu instabile: i valori oscillano in modo irregolare nel tempo (CV% > 10%). Contattare il nostro supporto tecnico per consulenza.",
+      "ok":       "✅ Rame nella norma. Il valore è stabile. Continuare il monitoraggio periodico."
+    },
+    "Piombo": {
+      "high":     "🚨 Pb oltre soglia RoHS! La presenza di Piombo oltre il limite legale richiede un intervento immediato. Identificare la fonte di contaminazione tra componenti, frame o fixtures. Contattare immediatamente il nostro supporto tecnico.",
+      "low":      "✅ Piombo nella norma. Il valore è al di sotto del limite RoHS. Nessun intervento necessario.",
+      "unstable": "⚡ Pb instabile: i valori oscillano in modo irregolare nel tempo (CV% > 10%). Possibile contaminazione episodica. Tracciare i lotti dei componenti e contattare il nostro supporto tecnico per consulenza.",
+      "ok":       "✅ Piombo nella norma. Il valore è stabile e al di sotto del limite RoHS. Continuare il monitoraggio periodico."
+    },
+    "Germanio": {
+      "high":     "🔴 Ge elevato: dosaggio eccessivo dell'additivo. Verificare le aggiunte recenti e ridurre il dosaggio. Contattare il nostro supporto tecnico per consulenza.",
+      "low":      "📉 Ge in calo: il livello insufficiente di Germanio potrebbe ridurre le proprietà anti-ossidazione della lega. Si consiglia un intervento con una lega di ripristino. Contattare il nostro supporto tecnico per consulenza.",
+      "unstable": "⚡ Ge instabile: i valori oscillano in modo irregolare nel tempo (CV% > 10%). Si consiglia una fase di controllo per monitorare l'andamento e definire un piano per il mantenimento nei valori ottimali. Contattare il nostro supporto tecnico per consulenza.",
+      "ok":       "✅ Germanio nella norma. Il livello è stabile e garantisce le proprietà anti-ossidazione della lega. Continuare il monitoraggio periodico."
+    }
+  },
+
+  "prossima_analisi": {
+    "frequenza_mesi": 3,
+    "data_calcolata": "11/02/2026",
+    "nota_promemoria": "Tutti i valori sono nella norma. Nessun intervento necessario."
+  },
+
+  "documenti": {
+    "rapporti": [
+      { "nome": "Rapporto Analisi – Novalgic Pozzetto", "data": "14/01/2026", "file": "2026-01-14_rapporto_novalgic_pozzetto.pdf" }
+    ]
+  },
+
+  "acquisti": [
+    { "data": "26/02/2026", "prodotto": "SN100CS+", "quantita_kg": 50.75, "prezzo_kg": 45.42 }
+  ],
+
+  "pozzetti": [
+    {
+      "id": "P1",
+      "label": "LINEA ROHS 1",
+      "analisi": [
+        { "data": "15/03/24", "Nichel": 0.0434, "Rame": 0.801, "Piombo": 0.0683, "Germanio": 0.0034 },
+        { "data": "12/06/24", "Nichel": 0.0435, "Rame": 0.804, "Piombo": 0.0342, "Germanio": 0.0028 },
+        { "data": "28/10/24", "Nichel": 0.0407, "Rame": 0.772, "Piombo": 0.0153, "Germanio": 0.0034 },
+        { "data": "17/02/25", "Nichel": 0.0375, "Rame": 0.746, "Piombo": 0.0153, "Germanio": 0.0051 },
+        { "data": "17/03/25", "Nichel": 0.0417, "Rame": 0.762, "Piombo": 0.0189, "Germanio": 0.0060 },
+        { "data": "17/04/25", "Nichel": 0.0472, "Rame": 0.765, "Piombo": 0.0226, "Germanio": 0.0050 },
+        { "data": "06/05/25", "Nichel": 0.0439, "Rame": 0.781, "Piombo": 0.0229, "Germanio": 0.0115 },
+        { "data": "11/06/25", "Nichel": 0.0521, "Rame": 0.843, "Piombo": 0.0217, "Germanio": 0.0061 },
+        { "data": "16/07/25", "Nichel": 0.0434, "Rame": 0.834, "Piombo": 0.0209, "Germanio": 0.0062 },
+        { "data": "18/09/25", "Nichel": 0.0382, "Rame": 0.821, "Piombo": 0.0204, "Germanio": 0.0056 },
+        { "data": "11/11/25", "Nichel": 0.0405, "Rame": 0.843, "Piombo": 0.0229, "Germanio": 0.0058 }
+      ]
+    },
+    {
+      "id": "P2",
+      "label": "LINEA JOT",
+      "analisi": [
+        { "data": "15/11/22", "Nichel": 0.0424, "Rame": 0.722, "Piombo": 0.0170, "Germanio": 0.0033 },
+        { "data": "15/03/24", "Nichel": 0.0395, "Rame": 0.792, "Piombo": 0.0149, "Germanio": 0.0031 },
+        { "data": "12/06/24", "Nichel": 0.0392, "Rame": 0.802, "Piombo": 0.0197, "Germanio": 0.0031 },
+        { "data": "28/10/24", "Nichel": 0.0384, "Rame": 0.772, "Piombo": 0.0142, "Germanio": 0.0032 },
+        { "data": "17/02/25", "Nichel": 0.0371, "Rame": 0.788, "Piombo": 0.0145, "Germanio": 0.0049 },
+        { "data": "17/03/25", "Nichel": 0.0371, "Rame": 0.795, "Piombo": 0.0165, "Germanio": 0.0049 },
+        { "data": "17/04/25", "Nichel": 0.0378, "Rame": 0.786, "Piombo": 0.0142, "Germanio": 0.0045 },
+        { "data": "19/05/25", "Nichel": 0.0383, "Rame": 0.795, "Piombo": 0.0150, "Germanio": 0.0050 },
+        { "data": "11/06/25", "Nichel": 0.0391, "Rame": 0.798, "Piombo": 0.0146, "Germanio": 0.0061 },
+        { "data": "16/07/25", "Nichel": 0.0398, "Rame": 0.786, "Piombo": 0.0146, "Germanio": 0.0055 },
+        { "data": "18/09/25", "Nichel": 0.0401, "Rame": 0.765, "Piombo": 0.0147, "Germanio": 0.0054 },
+        { "data": "11/11/25", "Nichel": 0.0392, "Rame": 0.787, "Piombo": 0.0176, "Germanio": 0.0076 }
+      ]
+    },
+    {
+      "id": "P3",
+      "label": "LINEA BABY 2",
+      "analisi": [
+        { "data": "28/10/24", "Nichel": 0.0416, "Rame": 0.730, "Piombo": 0.0215, "Germanio": 0.0040 },
+        { "data": "17/02/25", "Nichel": 0.0306, "Rame": 0.720, "Piombo": 0.0233, "Germanio": 0.0036 },
+        { "data": "15/03/25", "Nichel": 0.0420, "Rame": 0.776, "Piombo": 0.0314, "Germanio": 0.0036 },
+        { "data": "17/03/25", "Nichel": 0.0421, "Rame": 0.746, "Piombo": 0.0226, "Germanio": 0.0040 },
+        { "data": "17/04/25", "Nichel": 0.0319, "Rame": 0.688, "Piombo": 0.0218, "Germanio": 0.0038 },
+        { "data": "19/05/25", "Nichel": 0.0403, "Rame": 0.747, "Piombo": 0.0214, "Germanio": 0.0039 },
+        { "data": "11/06/25", "Nichel": 0.0441, "Rame": 0.759, "Piombo": 0.0212, "Germanio": 0.0034 },
+        { "data": "16/07/25", "Nichel": 0.0449, "Rame": 0.736, "Piombo": 0.0193, "Germanio": 0.0040 },
+        { "data": "18/09/25", "Nichel": 0.0350, "Rame": 0.670, "Piombo": 0.0192, "Germanio": 0.0035 },
+        { "data": "11/11/25", "Nichel": 0.0460, "Rame": 0.732, "Piombo": 0.0227, "Germanio": 0.0033 }
+      ]
+    },
+    {
+      "id": "P4",
+      "label": "SELETTIVA – Pozzetto 1",
+      "analisi": [
+        { "data": "15/03/24", "Nichel": 0.0602, "Rame": 0.838, "Piombo": 0.0227, "Germanio": 0.0013 },
+        { "data": "12/06/24", "Nichel": 0.0631, "Rame": 0.821, "Piombo": 0.0148, "Germanio": 0.0010 },
+        { "data": "28/10/24", "Nichel": 0.0787, "Rame": 0.863, "Piombo": 0.0109, "Germanio": 0.0010 },
+        { "data": "17/02/25", "Nichel": 0.0387, "Rame": 0.729, "Piombo": 0.0125, "Germanio": 0.0017 },
+        { "data": "17/03/25", "Nichel": 0.0713, "Rame": 0.859, "Piombo": 0.0139, "Germanio": 0.0026 },
+        { "data": "17/04/25", "Nichel": 0.0735, "Rame": 0.856, "Piombo": 0.0193, "Germanio": 0.0012 },
+        { "data": "19/05/25", "Nichel": 0.0746, "Rame": 0.858, "Piombo": 0.0185, "Germanio": 0.0025 },
+        { "data": "11/06/25", "Nichel": 0.0729, "Rame": 0.895, "Piombo": 0.0183, "Germanio": 0.0037 },
+        { "data": "17/06/25", "Nichel": 0.0740, "Rame": 0.885, "Piombo": 0.0164, "Germanio": 0.0064 },
+        { "data": "18/09/25", "Nichel": 0.0797, "Rame": 0.886, "Piombo": 0.0156, "Germanio": 0.0050 },
+        { "data": "11/11/25", "Nichel": 0.0709, "Rame": 0.825, "Piombo": 0.0373, "Germanio": 0.0134 }
+      ]
+    },
+    {
+      "id": "P5",
+      "label": "SELETTIVA – Pozzetto 2",
+      "analisi": [
+        { "data": "15/03/24", "Nichel": 0.0465, "Rame": 0.746, "Piombo": 0.0133, "Germanio": 0.0018 },
+        { "data": "12/06/24", "Nichel": 0.0652, "Rame": 0.803, "Piombo": 0.0107, "Germanio": 0.0011 },
+        { "data": "28/10/24", "Nichel": 0.0643, "Rame": 0.800, "Piombo": 0.0086, "Germanio": 0.0015 },
+        { "data": "17/02/25", "Nichel": 0.0559, "Rame": 0.824, "Piombo": 0.0151, "Germanio": 0.0038 },
+        { "data": "17/03/25", "Nichel": 0.0288, "Rame": 0.663, "Piombo": 0.0153, "Germanio": 0.0049 },
+        { "data": "17/04/25", "Nichel": 0.0612, "Rame": 0.878, "Piombo": 0.0174, "Germanio": 0.0039 },
+        { "data": "19/05/25", "Nichel": 0.0619, "Rame": 0.885, "Piombo": 0.0165, "Germanio": 0.0039 },
+        { "data": "11/06/25", "Nichel": 0.0630, "Rame": 0.856, "Piombo": 0.0157, "Germanio": 0.0060 },
+        { "data": "17/06/25", "Nichel": 0.0604, "Rame": 0.831, "Piombo": 0.0139, "Germanio": 0.0076 },
+        { "data": "18/09/25", "Nichel": 0.0650, "Rame": 0.839, "Piombo": 0.0132, "Germanio": 0.0094 },
+        { "data": "11/11/25", "Nichel": 0.0527, "Rame": 0.773, "Piombo": 0.0185, "Germanio": 0.0120 }
+      ]
+    }
+  ]
+}
