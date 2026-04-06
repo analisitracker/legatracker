@@ -113,6 +113,7 @@ td.out { color: #f87171 !important; font-weight: 700; }
     <button class="main-tab" id="tab-acquisti" onclick="showTab('acquisti')">📦 Acquisti</button>
     <button class="main-tab" id="tab-documenti" onclick="showTab('documenti')">📁 Documenti</button>
     <button class="main-tab" id="tab-mercati" onclick="showTab('mercati')">📈 Mercati</button>
+    <button class="main-tab" id="tab-guida" onclick="showTab('guida')">📖 Guida</button>
   </div>
   <div class="nav-right">
     <button class="btn-logout" onclick="logout()">🚪 Esci</button>
@@ -125,6 +126,16 @@ td.out { color: #f87171 !important; font-weight: 700; }
 <div class="wrap" id="acq-content" style="display:none"></div>
 <div class="wrap" id="mkt-content" style="display:none"></div>
 <div class="wrap" id="doc-content" style="display:none"></div>
+<div class="wrap" id="guida-content" style="display:none"></div>
+
+<!-- Tooltip overlay -->
+<div id="tooltip-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:1000;align-items:center;justify-content:center">
+  <div style="background:#fff;border-radius:14px;padding:28px 32px;max-width:440px;width:90%;box-shadow:0 20px 60px rgba(0,0,0,0.25);position:relative">
+    <button onclick="closeTooltip()" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#999">✕</button>
+    <div id="tooltip-title" style="font-weight:700;font-size:16px;margin-bottom:10px;color:#1a1a2e"></div>
+    <div id="tooltip-body" style="font-size:14px;color:#5a6070;line-height:1.7"></div>
+  </div>
+</div>
 
 <script>
 // ─── SPECS & NOTES ────────────────────────────────────────────────────────
@@ -316,9 +327,9 @@ function renderDashboard() {
       </div>
       <div class="stats-row">
         <div class="stat-box"><div class="stat-lbl">Ultimo valore</div><div class="stat-val" style="color:${st==='err'?'#c0392b':st==='warn'?'#d97706':'#1a1a2e'}">${last.toFixed(4)}%</div></div>
-        <div class="stat-box"><div class="stat-lbl">Media storica</div><div class="stat-val" style="color:#5a6070">${avg.toFixed(4)}%</div></div>
-        <div class="stat-box"><div class="stat-lbl">CV% variabilità</div><div class="stat-val" style="color:${cvColor(c)}">${c.toFixed(1)}% ${c<=10?'🟢':c<=30?'🟡':'🔴'}</div></div>
-        <div class="stat-box"><div class="stat-lbl">Δ ultime 3</div><div class="stat-val" style="color:${Math.abs(dl)>avg*0.05?'#d97706':'#5a6070'}">${dl>=0?'+':''}${dl.toFixed(4)}%</div></div>
+        <div class="stat-box"><div class="stat-lbl">Media storica <button onclick="showTooltip('media')" style="background:none;border:none;cursor:pointer;font-size:11px;color:#b01c2e;padding:0;margin-left:2px">ℹ️</button></div><div class="stat-val" style="color:#5a6070">${avg.toFixed(4)}%</div></div>
+        <div class="stat-box"><div class="stat-lbl">CV% variabilità <button onclick="showTooltip('cv')" style="background:none;border:none;cursor:pointer;font-size:11px;color:#b01c2e;padding:0;margin-left:2px">ℹ️</button></div><div class="stat-val" style="color:${cvColor(c)}">${c.toFixed(1)}% ${c<=10?'🟢':c<=30?'🟡':'🔴'}</div></div>
+        <div class="stat-box"><div class="stat-lbl">Δ ultime 3 <button onclick="showTooltip('delta')" style="background:none;border:none;cursor:pointer;font-size:11px;color:#b01c2e;padding:0;margin-left:2px">ℹ️</button></div><div class="stat-val" style="color:${Math.abs(dl)>avg*0.05?'#d97706':'#5a6070'}">${dl>=0?'+':''}${dl.toFixed(4)}%</div></div>
       </div>
       ${buildSVG(vals, dates, s.color, s.max, s.min, comp)}
       <div class="nota-box" style="border-color:${ns.border};background:${ns.bg};color:${ns.color}">${n.t}</div>
@@ -363,18 +374,198 @@ function switchPoz(i) { activePoz=i; renderDashboard(); }
 let activeTab = 'dashboard';
 function showTab(tab) {
   activeTab = tab;
-  document.getElementById('tab-dashboard').classList.toggle('active', tab==='dashboard');
-  document.getElementById('tab-acquisti').classList.toggle('active', tab==='acquisti');
-  document.getElementById('tab-mercati').classList.toggle('active', tab==='mercati');
-  document.getElementById('tab-documenti').classList.toggle('active', tab==='documenti');
-  document.getElementById('main-content').style.display = tab==='dashboard' ? '' : 'none';
-  document.getElementById('acq-content').style.display  = tab==='acquisti'  ? '' : 'none';
-  document.getElementById('mkt-content').style.display  = tab==='mercati'   ? '' : 'none';
-  document.getElementById('doc-content').style.display  = tab==='documenti' ? '' : 'none';
+  ['dashboard','acquisti','documenti','mercati','guida'].forEach(t => {
+    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+  });
+  document.getElementById('main-content').style.display  = tab==='dashboard' ? '' : 'none';
+  document.getElementById('acq-content').style.display   = tab==='acquisti'  ? '' : 'none';
+  document.getElementById('mkt-content').style.display   = tab==='mercati'   ? '' : 'none';
+  document.getElementById('doc-content').style.display   = tab==='documenti' ? '' : 'none';
+  document.getElementById('guida-content').style.display = tab==='guida'     ? '' : 'none';
   if (tab==='acquisti')  renderAcquisti();
   if (tab==='mercati')   renderMercati();
   if (tab==='documenti') renderDocumenti();
+  if (tab==='guida')     renderGuida();
 }
+
+// ─── TOOLTIP ──────────────────────────────────────────────────────────────
+const TOOLTIPS = {
+  cv: {
+    title: 'CV% — Indice di Variabilità',
+    body: `Il <strong>Coefficiente di Variazione (CV%)</strong> misura quanto i valori oscillano nel tempo rispetto alla media. È calcolato sulle ultime 3 analisi.<br><br>
+    🟢 <strong>CV% &lt; 10%</strong> — Processo stabile, tutto sotto controllo<br>
+    🟡 <strong>CV% 10–30%</strong> — Variabilità moderata, monitorare con attenzione<br>
+    🔴 <strong>CV% &gt; 30%</strong> — Alta variabilità, il processo non è stabile`
+  },
+  delta: {
+    title: 'Δ Ultime 3 — Variazione Recente',
+    body: `Indica la <strong>differenza tra l'ultimo valore e il terzultimo</strong>. Mostra se la composizione sta aumentando, diminuendo o è stabile nel breve periodo.<br><br>
+    Un valore positivo (▲) indica un aumento recente.<br>
+    Un valore negativo (▼) indica una diminuzione recente.<br>
+    Un valore vicino allo zero indica stabilità.`
+  },
+  media: {
+    title: 'Media Storica',
+    body: `È la <strong>media di tutti i valori registrati</strong> per quel componente nel pozzetto. Rappresenta il livello medio di composizione della lega nel tempo ed è utile per valutare la deriva rispetto alle specifiche.`
+  },
+  stato: {
+    title: 'Badge di Stato',
+    body: `Il badge mostra lo stato attuale del componente:<br><br>
+    ✅ <strong>OK</strong> — Il valore è nella norma e stabile<br>
+    ⚠️ <strong>ATTENZIONE</strong> — Il valore è nella norma ma la variabilità è elevata<br>
+    🔴 <strong>FUORI SPEC</strong> — Il valore supera i limiti di specifica, è necessario un intervento`
+  },
+  specifiche: {
+    title: 'Limiti di Specifica',
+    body: `Ogni componente ha dei <strong>limiti di riferimento</strong> definiti dal produttore della lega:<br><br>
+    <strong>Nichel (Ni)</strong>: 0,010% – 0,100%<br>
+    <strong>Rame (Cu)</strong>: 0,400% – 0,850%<br>
+    <strong>Piombo (Pb)</strong>: max 0,100% (limite RoHS)<br>
+    <strong>Germanio (Ge)</strong>: 0,007% – 0,015%<br><br>
+    Nel grafico le linee tratteggiate indicano i limiti massimo e minimo.`
+  }
+};
+
+function showTooltip(key) {
+  const t = TOOLTIPS[key];
+  if (!t) return;
+  document.getElementById('tooltip-title').textContent = t.title;
+  document.getElementById('tooltip-body').innerHTML = t.body;
+  const overlay = document.getElementById('tooltip-overlay');
+  overlay.style.display = 'flex';
+}
+function closeTooltip() {
+  document.getElementById('tooltip-overlay').style.display = 'none';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeTooltip(); });
+
+// ─── GUIDA ────────────────────────────────────────────────────────────────
+function renderGuida() {
+  const el = document.getElementById('guida-content');
+  if (el.dataset.loaded) return;
+  el.dataset.loaded = true;
+
+  el.innerHTML = `
+    <div class="page-title">📖 Guida alla Lettura</div>
+    <div class="page-sub">Come interpretare i dati del portale di monitoraggio</div>
+
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-hdr"><span class="panel-title">🎨 Significato dei Colori</span></div>
+      <div class="panel-body">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px">
+          <div style="background:#f0faf4;border:1px solid #86efac;border-radius:10px;padding:16px">
+            <div style="font-size:22px;margin-bottom:8px">🟢</div>
+            <div style="font-weight:700;color:#166534;margin-bottom:6px">Verde — OK</div>
+            <div style="font-size:13px;color:#4a6070">Il valore è nella norma e il processo è stabile. Nessun intervento necessario.</div>
+          </div>
+          <div style="background:#fffbeb;border:1px solid #fbbf24;border-radius:10px;padding:16px">
+            <div style="font-size:22px;margin-bottom:8px">🟡</div>
+            <div style="font-weight:700;color:#92400e;margin-bottom:6px">Giallo — Attenzione</div>
+            <div style="font-size:13px;color:#4a6070">Il valore è nella norma ma si rileva variabilità. Monitorare con attenzione nelle prossime analisi.</div>
+          </div>
+          <div style="background:#fef2f2;border:1px solid #f87171;border-radius:10px;padding:16px">
+            <div style="font-size:22px;margin-bottom:8px">🔴</div>
+            <div style="font-weight:700;color:#991b1b;margin-bottom:6px">Rosso — Fuori Spec</div>
+            <div style="font-size:13px;color:#4a6070">Il valore supera i limiti di specifica. È necessario un intervento. Contattare il supporto tecnico.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-hdr"><span class="panel-title">📊 Indicatori Statistici</span></div>
+      <div class="panel-body">
+        <div style="display:flex;flex-direction:column;gap:16px">
+
+          <div style="display:flex;gap:16px;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid #e8ebf0">
+            <div style="background:#e8f0fe;border-radius:8px;padding:10px 14px;font-size:20px;flex-shrink:0">📈</div>
+            <div>
+              <div style="font-weight:700;font-size:14px;margin-bottom:4px">CV% — Indice di Variabilità</div>
+              <div style="font-size:13px;color:#5a6070;line-height:1.6">
+                Misura quanto i valori oscillano nel tempo. È calcolato sulle <strong>ultime 3 analisi</strong>.<br>
+                🟢 CV% &lt; 10% → stabile &nbsp;|&nbsp; 🟡 10–30% → attenzione &nbsp;|&nbsp; 🔴 &gt; 30% → instabile
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:16px;align-items:flex-start;padding-bottom:16px;border-bottom:1px solid #e8ebf0">
+            <div style="background:#fef3e2;border-radius:8px;padding:10px 14px;font-size:20px;flex-shrink:0">↕️</div>
+            <div>
+              <div style="font-weight:700;font-size:14px;margin-bottom:4px">Δ Ultime 3 — Variazione Recente</div>
+              <div style="font-size:13px;color:#5a6070;line-height:1.6">
+                Differenza tra l'ultimo valore e il terzultimo. Indica se la composizione sta <strong>aumentando</strong>, <strong>diminuendo</strong> o è <strong>stabile</strong> nel breve periodo.
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:16px;align-items:flex-start">
+            <div style="background:#f0fdf4;border-radius:8px;padding:10px 14px;font-size:20px;flex-shrink:0">∑</div>
+            <div>
+              <div style="font-weight:700;font-size:14px;margin-bottom:4px">Media Storica</div>
+              <div style="font-size:13px;color:#5a6070;line-height:1.6">
+                Media di tutti i valori registrati per quel componente. Utile per valutare la deriva nel lungo periodo rispetto alle specifiche.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-hdr"><span class="panel-title">⚗️ Limiti di Specifica dei Componenti</span></div>
+      <div class="panel-body">
+        <table>
+          <thead><tr><th>Componente</th><th>Simbolo</th><th>Min</th><th>Max</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="tdl">Nichel</td>
+              <td style="color:#4da6ff;font-weight:700">Ni</td>
+              <td>0,010%</td><td>0,100%</td>
+              <td style="text-align:left;font-size:12px;color:#7a8090">Migliora fluidità e struttura dei giunti</td>
+            </tr>
+            <tr>
+              <td class="tdl">Rame</td>
+              <td style="color:#f97316;font-weight:700">Cu</td>
+              <td>0,400%</td><td>0,850%</td>
+              <td style="text-align:left;font-size:12px;color:#7a8090">Si accumula per dissoluzione dai PCB</td>
+            </tr>
+            <tr>
+              <td class="tdl">Piombo</td>
+              <td style="color:#4ade80;font-weight:700">Pb</td>
+              <td>—</td><td>0,100%</td>
+              <td style="text-align:left;font-size:12px;color:#7a8090">Limite RoHS — presenza da contaminazione</td>
+            </tr>
+            <tr>
+              <td class="tdl">Germanio</td>
+              <td style="color:#c084fc;font-weight:700">Ge</td>
+              <td>0,007%</td><td>0,015%</td>
+              <td style="text-align:left;font-size:12px;color:#7a8090">Riduce la formazione di scorie</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-bottom:20px">
+      <div class="panel-hdr"><span class="panel-title">📉 Come Leggere il Grafico</span></div>
+      <div class="panel-body">
+        <div style="font-size:13px;color:#5a6070;line-height:1.9">
+          Il grafico mostra l'<strong>andamento storico</strong> del componente nel tempo.<br>
+          — La <strong>linea colorata</strong> collega i valori delle analisi successive.<br>
+          — La <strong>linea tratteggiata rossa</strong> indica il limite massimo di specifica.<br>
+          — La <strong>linea tratteggiata arancione</strong> indica il limite minimo (dove presente).<br>
+          — I <strong>punti colorati</strong> sui dati indicano lo stato: verde = OK, rosso = fuori specifica.<br>
+          — I <strong>valori numerici</strong> sopra ogni punto mostrano la misura esatta.
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:11px;color:#b0b0be;text-align:center;padding-bottom:10px">
+      Per informazioni tecniche contattare il supporto Cabelpiù Electronics
+    </div>`;
+}
+
 
 // ─── MERCATI ──────────────────────────────────────────────────────────────
 function renderMercati() {
